@@ -1,0 +1,13 @@
+{
+  "name": "kastra",
+  "owner": {
+    "name": "Kastra Labs"
+  },
+  "plugins": [
+    {
+      "name": "kastra",
+      "source": "./kastra",
+      "description": "Sign up for Kastra and govern your AI agents — onboarding tools + edge install."
+    }
+  ]
+}

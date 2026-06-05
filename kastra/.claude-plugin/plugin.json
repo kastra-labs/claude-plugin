@@ -1,0 +1,8 @@
+{
+  "name": "kastra",
+  "description": "Onboarding and edge setup for Kastra AI governance. Adds tools to create a free Kastra account and install the local enforcement edge.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Kastra Labs"
+  }
+}
