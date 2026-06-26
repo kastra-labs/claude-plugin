@@ -11,7 +11,7 @@ checked against their Kastra policies.
 ## Steps
 
 1. Confirm the platform. These instructions target macOS (Homebrew). For other
-   platforms point the user to https://kastra.ai/docs/install.
+   platforms point the user to https://kastra.ai/cli.
 
 2. Install the CLI:
 
