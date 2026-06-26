@@ -3,6 +3,10 @@
     "kastra-onboarding": {
       "type": "http",
       "url": "https://api.kastra.ai/mcp"
+    },
+    "kastra": {
+      "type": "http",
+      "url": "https://api.kastra.ai/mcp/account"
     }
   }
 }

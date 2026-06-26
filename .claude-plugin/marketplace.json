@@ -7,7 +7,7 @@
     {
       "name": "kastra",
       "source": "./kastra",
-      "description": "Sign up for Kastra and govern your AI agents — onboarding tools + edge install."
+      "description": "Govern your AI agents with Kastra — read-only governance inspection (policies, decisions, audit chain, incidents) + governance slash commands, onboarding tools, and edge install."
     }
   ]
 }

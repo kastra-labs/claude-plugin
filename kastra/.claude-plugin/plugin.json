@@ -1,7 +1,7 @@
 {
   "name": "kastra",
-  "description": "Onboarding and edge setup for Kastra AI governance. Adds tools to create a free Kastra account and install the local enforcement edge.",
-  "version": "0.1.0",
+  "description": "Govern your AI agents with Kastra. Inspect your governance state read-only (policies, decisions, audit chain, incidents) via the Kastra OAuth connector and governance slash commands, create a free account, and install the local enforcement edge.",
+  "version": "0.2.0",
   "author": {
     "name": "Kastra Labs"
   }
