@@ -24,10 +24,11 @@ so you can spin up a free-tier account without leaving the chat.
 ### What you get
 
 **Read-only governance inspection** via the Kastra OAuth connector
-(`https://api.kastra.ai/mcp/account`). The first time a governance tool runs,
-Claude Code opens your browser to authorize once (OAuth 2.1 + PKCE, scope
-`kastra.account.read`) — it never sees a pasted API key. Then your assistant can
-read your policies, decisions, audit chain, incidents, and activity stats.
+(`https://api.kastra.ai/mcp/account`) — 13 read-only governance tools covering
+policies, decisions, environments, the tamper-evident audit chain, kill-switch
+incidents, API keys, and activity/rule stats. The first time a governance tool
+runs, Claude Code opens your browser to authorize once (OAuth 2.1 + PKCE, scope
+`kastra.account.read`) — it never sees a pasted API key.
 
 **Governance slash commands** (composed from the read-only tools):
 
@@ -59,3 +60,12 @@ planned future version.
 > Note: the governance connector registers as an MCP server named `kastra`, so
 > its tools surface as `mcp__kastra__*`. If you also have the local
 > `kastra-edge` MCP installed under the same name, expect a naming overlap.
+
+## Version & docs
+
+**v0.2.1** — OAuth governance MCP connector (13 read-only tools) + hosted
+onboarding MCP + 4 governance skills (`governance-status`, `policy-check`,
+`decision-audit`, `verify-audit`) and the `edge-install` skill.
+
+Public listing in the Claude Code plugin directory is still pending. For the
+broader platform, start at the workspace docs index — [`../docs/README.md`](../docs/README.md).
