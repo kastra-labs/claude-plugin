@@ -1,7 +1,7 @@
 {
   "name": "kastra",
   "description": "Govern your AI agents with Kastra. Inspect your governance state read-only (policies, decisions, audit chain, incidents) via the Kastra OAuth connector and governance slash commands, create a free account, and install the local enforcement edge.",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": {
     "name": "Kastra Labs"
   },
