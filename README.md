@@ -52,10 +52,26 @@ policies. See below.
 
 This plugin is **read-only inspection**. To make Kastra actually *enforce* (block
 or hold tool calls) on this machine, install the local edge — run
-`/kastra:edge-install` or `brew install kastra-labs/tap/kastra-edge && kastra-edge
-login && kastra-edge install-claude`. Local enforcement runs as a Claude Code
-hook from the `kastra-edge` CLI; bundling it directly into this plugin is a
-planned future version.
+`/kastra:edge-install`, which picks the right command for your platform, or do it
+by hand:
+
+```bash
+# macOS
+brew install kastra-labs/tap/kastra-edge
+```
+
+```powershell
+# Windows — all three lines; scoop has no inline-tap form, so
+# `scoop install kastra-edge` alone fails with "couldn't find manifest"
+scoop install git
+scoop bucket add kastra https://github.com/kastra-labs/scoop-bucket
+scoop install kastra-edge
+```
+
+Then `kastra-edge login && kastra-edge install-claude` on either platform. Local
+enforcement runs as a Claude Code hook from the `kastra-edge` CLI; bundling it
+directly into this plugin is a planned future version. There is no prebuilt Edge
+client for Linux.
 
 > Note: the governance connector registers as an MCP server named `kastra`, so
 > its tools surface as `mcp__kastra__*`. If you also have the local
@@ -63,7 +79,7 @@ planned future version.
 
 ## Version & docs
 
-**v0.2.1** — OAuth governance MCP connector (13 read-only tools) + hosted
+**v0.2.2** — OAuth governance MCP connector (13 read-only tools) + hosted
 onboarding MCP + 4 governance skills (`governance-status`, `policy-check`,
 `decision-audit`, `verify-audit`) and the `edge-install` skill.
 
