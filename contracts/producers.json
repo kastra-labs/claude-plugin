@@ -1,0 +1,34 @@
+{
+  "shared_tools": [
+    "search_decisions",
+    "get_policy",
+    "list_incidents",
+    "list_environments",
+    "list_policies",
+    "get_policy_revisions",
+    "get_rule_stats",
+    "get_activity_stats",
+    "verify_audit_chain",
+    "list_audit_events",
+    "list_api_keys",
+    "list_checkpoints",
+    "get_governance_preferences",
+    "get_active_policy",
+    "list_policy_revisions"
+  ],
+  "onboarding_tools": [
+    "kastra_start_signup",
+    "kastra_signup_status"
+  ],
+  "edge_commands": [
+    "help",
+    "login",
+    "status",
+    "install-claude",
+    "install-hooks",
+    "uninstall-claude",
+    "install-mcp",
+    "uninstall-mcp",
+    "install-codex"
+  ]
+}

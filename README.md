@@ -24,7 +24,7 @@ so you can spin up a free-tier account without leaving the chat.
 ### What you get
 
 **Read-only governance inspection** via the Kastra OAuth connector
-(`https://api.kastra.ai/mcp/account`) — 13 read-only governance tools covering
+(`https://api.kastra.ai/mcp/account`) — 13 read-only governance operations (15 tool names with compatibility aliases) covering
 policies, decisions, environments, the tamper-evident audit chain, kill-switch
 incidents, API keys, and activity/rule stats. The first time a governance tool
 runs, Claude Code opens your browser to authorize once (OAuth 2.1 + PKCE, scope
@@ -69,13 +69,28 @@ scoop install kastra-edge
 ```
 
 Then `kastra-edge login && kastra-edge install-claude` on either platform. Local
-enforcement runs as a Claude Code hook from the `kastra-edge` CLI; bundling it
-directly into this plugin is a planned future version. There is no prebuilt Edge
-client for Linux.
+enforcement runs as a Claude Code hook from the `kastra-edge` CLI. There is no
+prebuilt Edge client for Linux.
 
-> Note: the governance connector registers as an MCP server named `kastra`, so
-> its tools surface as `mcp__kastra__*`. If you also have the local
-> `kastra-edge` MCP installed under the same name, expect a naming overlap.
+### Companion release and MCP coexistence
+
+Command availability depends on your installed Edge version. Run `kastra-edge help`
+to see supported commands. If `install-claude` is unavailable, use `install-hooks`.
+Only use the removal commands below when they appear in that help output.
+For policy inspection, the skills use the tool names advertised by the connected
+server and support the older policy tool names.
+
+This plugin keeps the hosted server name `kastra` and its `mcp__kastra__*` permissions. Onboarding stays `kastra-onboarding` at `/mcp`; inspection uses `/mcp/account`. New local wiring uses `kastra-edge`, so both can coexist. Hook governance and read-only MCP installation are separate:
+
+```sh
+kastra-edge install-mcp --target claude
+kastra-edge uninstall-mcp --target claude --dry-run
+kastra-edge uninstall-claude --dry-run
+```
+
+Existing local entries named `kastra` are preserved by an ordinary reinstall. To migrate one explicitly, preview `uninstall-mcp --target claude --dry-run`, remove the owned local entry with `uninstall-mcp --target claude`, then reinstall. Update any local permissions from `mcp__kastra__*` to `mcp__kastra-edge__*` when migrating; retain hosted permissions under `mcp__kastra__*`. Removal preserves hosted and unrelated entries. The two inspection surfaces overlap in capabilities; select the intended server rather than invoking both for the same operation.
+
+`kastrahook` remains a supported executable name in release archives, Homebrew, Scoop, and desktop bundles. The plugin ID `kastra@kastra` is unchanged.
 
 ## Version & docs
 
@@ -83,5 +98,4 @@ client for Linux.
 onboarding MCP + 4 governance skills (`governance-status`, `policy-check`,
 `decision-audit`, `verify-audit`) and the `edge-install` skill.
 
-Public listing in the Claude Code plugin directory is still pending. For the
-broader platform, start at the workspace docs index — [`../docs/README.md`](../docs/README.md).
+For platform guides, see [Kastra documentation](https://kastra.ai/docs).

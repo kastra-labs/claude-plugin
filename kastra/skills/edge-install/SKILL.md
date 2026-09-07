@@ -15,7 +15,7 @@ checked against their Kastra policies.
 
 2. Install the CLI.
 
-   **macOS / Linuxbrew:**
+   **macOS:**
 
    ```bash
    brew install kastra-labs/tap/kastra-edge
@@ -34,17 +34,13 @@ checked against their Kastra policies.
    If `brew` or `scoop` is missing, point the user at https://brew.sh or
    https://scoop.sh first.
 
-   Tell a Windows user two things up front: the binaries are **not
-   code-signed**, so SmartScreen warns on first run; and there is **no desktop
-   app on Windows**, so a HOLD is approved from the console rather than from a
-   notification. Governance itself is identical — the hooks are the enforcement
+   Explain the distribution difference on Windows: the binaries are **not
+   code-signed**, so SmartScreen warns on first run; the Windows desktop distribution and its bundled CLIs are signed as Kastra Labs Inc. A HOLD can be approved in the console. Governance itself is identical — the hooks are the enforcement
    surface on both platforms.
 
-   > **Linux:** there is no prebuilt Edge client. `release.yml` builds the edge
-   > binaries for darwin and windows only, and the Homebrew formula's URL is a
-   > darwin tarball — under Linuxbrew it fetches Mach-O binaries that cannot
-   > run. Only the separate `kastra` control-plane CLI ships for Linux, and it
-   > governs nothing on its own. Do not offer a Linux path here.
+   > **Linux:** there is no prebuilt Edge client. The Homebrew and Scoop
+   > instructions above are for macOS and Windows. Do not offer a Linux
+   > installation path for local enforcement.
 
 3. Log in (opens a browser to authorize this device):
 
@@ -52,12 +48,24 @@ checked against their Kastra policies.
    kastra-edge login
    ```
 
-4. Wire the agent hooks + MCP:
+4. Run `kastra-edge help` to check the installed commands, then wire the agent
+   hooks. If `install-claude` is unavailable, use `install-hooks` for Claude Code.
+   Only offer the optional install/removal commands below when listed in help:
 
    ```bash
-   kastra-edge install-claude   # Claude Code hooks + read-only MCP
+   kastra-edge install-claude   # Claude Code hooks
    kastra-edge install-codex    # Codex hooks (restart Codex after)
    ```
+
+   Optional read-only local inspection is a separate install:
+
+   ```bash
+   kastra-edge install-mcp --target claude
+   ```
+
+   Preview owned configuration removal with `kastra-edge uninstall-claude --dry-run`
+   or `kastra-edge uninstall-mcp --target claude --dry-run`. Omit `--dry-run` to
+   remove only Kastra-owned configuration. Hosted inspection remains available.
 
 5. Verify enforcement is live:
 
