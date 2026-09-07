@@ -1,5 +1,5 @@
 ---
-description: Search Kastra decision history and explain denials — e.g. "show me denials in the last 24h", "why was I blocked", "what did Kastra deny on prod today", "which rule stopped this action". Use when the user wants to inspect past ALLOW/DENY decisions or debug why an action was governed.
+description: Search Kastra decision history and explain denials — e.g. "show me denials in the last 24h", "why was I blocked", "what did Kastra deny on prod today", "which rule stopped this action". Use when the user wants to inspect past ALLOW/DENY/PENDING_REVIEW decisions or debug why an action was governed.
 ---
 
 # Kastra decision audit
@@ -11,11 +11,11 @@ The first `kastra` tool call triggers a one-time browser authorization.
 ## Steps
 
 1. Build filters for `search_decisions` from the user's request:
-   - `decision`: `DENY` when they ask about blocks/denials; omit for both.
-   - `environment`: the env they named (e.g. `prod`); omit for all.
+   - `decision`: `DENY` when they ask about blocks/denials; use `PENDING_REVIEW` for pending human review; omit for all outcomes.
+   - `environment`: the environment name (e.g. `prod`), not a UUID; omit for all authorized environments.
    - `from` / `to`: RFC3339 bounds. Translate "last 24h", "today", "this week"
      into a concrete `from` (and `to` if needed).
-   - `limit`: keep modest (e.g. 50) unless they ask for more (max 1000).
+   - `limit`: keep modest (e.g. 50) unless they ask for more (max 200).
 2. Call `search_decisions`. Results are newest-first; each carries the outcome,
    environment, matched rule, source, and latency.
 3. When the user is debugging *why* something was denied, also call
@@ -31,7 +31,6 @@ The first `kastra` tool call triggers a one-time browser authorization.
 
 ## Notes
 
-`source` and `actor_email` filters are currently informational (stored, not
-filtered server-side) — note that if the user relies on them. Read-only; never
+`source` and `actor_email` are supported server-side filters. Use a source value advertised by `search_decisions`; do not infer it from the display name of an integration. Read-only; never
 fabricate decisions. On an auth error, tell the user to approve the browser
 authorization (or sign up via `kastra_start_signup` if they have no account).

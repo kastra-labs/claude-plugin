@@ -69,13 +69,28 @@ scoop install kastra-edge
 ```
 
 Then `kastra-edge login && kastra-edge install-claude` on either platform. Local
-enforcement runs as a Claude Code hook from the `kastra-edge` CLI; bundling it
-directly into this plugin is a planned future version. There is no prebuilt Edge
-client for Linux.
+enforcement runs as a Claude Code hook from the `kastra-edge` CLI. There is no
+prebuilt Edge client for Linux.
 
-> Note: the governance connector registers as an MCP server named `kastra`, so
-> its tools surface as `mcp__kastra__*`. If you also have the local
-> `kastra-edge` MCP installed under the same name, expect a naming overlap.
+### Companion release and MCP coexistence
+
+Command availability depends on your installed Edge version. Run `kastra-edge help`
+to see supported commands, and only use the removal commands below when they
+appear in that help output. Each MCP operation has exactly one tool name
+(`get_active_policy`, `list_policy_revisions`); a saved permission that still
+names a pre-release tool must be updated.
+
+This plugin keeps the hosted server name `kastra` and its `mcp__kastra__*` permissions. Onboarding stays `kastra-onboarding` at `/mcp`; inspection uses `/mcp/account`. New local wiring uses `kastra-edge`, so both can coexist. Hook governance and read-only MCP installation are separate:
+
+```sh
+kastra-edge install-mcp --target claude
+kastra-edge uninstall-mcp --target claude --dry-run
+kastra-edge uninstall-claude --dry-run
+```
+
+`install-mcp --target claude` moves a pre-release local entry named `kastra` to `kastra-edge` and tells you to update saved permissions for the local tools from `mcp__kastra__*` to `mcp__kastra-edge__*`; hosted permissions stay under `mcp__kastra__*`. Removal preserves hosted and unrelated entries. The two inspection surfaces overlap in capabilities; select the intended server rather than invoking both for the same operation.
+
+`kastrahook` remains a supported executable name in release archives, Homebrew, Scoop, and desktop bundles. The plugin ID `kastra@kastra` is unchanged.
 
 ## Version & docs
 
@@ -83,5 +98,4 @@ client for Linux.
 onboarding MCP + 4 governance skills (`governance-status`, `policy-check`,
 `decision-audit`, `verify-audit`) and the `edge-install` skill.
 
-Public listing in the Claude Code plugin directory is still pending. For the
-broader platform, start at the workspace docs index — [`../docs/README.md`](../docs/README.md).
+For platform guides, see [Kastra documentation](https://kastra.ai/docs).
