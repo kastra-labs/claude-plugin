@@ -1,11 +1,9 @@
 {
   "shared_tools": [
     "search_decisions",
-    "get_policy",
     "list_incidents",
     "list_environments",
     "list_policies",
-    "get_policy_revisions",
     "get_rule_stats",
     "get_activity_stats",
     "verify_audit_chain",
@@ -25,7 +23,6 @@
     "login",
     "status",
     "install-claude",
-    "install-hooks",
     "uninstall-claude",
     "install-mcp",
     "uninstall-mcp",

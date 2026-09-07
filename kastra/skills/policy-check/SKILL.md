@@ -13,11 +13,11 @@ The first `kastra` tool call triggers a one-time browser authorization.
 1. Determine the environment. Use an environment name (e.g. "prod"), never a UUID in `environment`. Resolve a supplied ID with `list_environments` first.
    Otherwise call `list_policies` first to see what exists and ask which
    environment they mean, or explicitly use the host default. A scoped OAuth grant cannot inspect another environment.
-2. Call `get_active_policy` for that environment (fall back to legacy `get_policy` only if the server does not advertise the canonical name) → the full active policy document
+2. Call `get_active_policy` for that environment → the full active policy document
    (deny rules, scoping, lifecycle metadata) and its revision number.
 3. Call `get_rule_stats` for the same environment → per-rule decision and denial
    counts, so you can show which rules are actually firing vs. dormant.
-4. For revision history, obtain `policy_id` from `list_policies`, then call `list_policy_revisions` (legacy fallback: `get_policy_revisions`).
+4. For revision history, obtain `policy_id` from `list_policies`, then call `list_policy_revisions`.
 5. Call `list_audit_events` (default limit) → recent governance changes (policy
    promotions, kill-switch toggles, config changes), newest first.
 

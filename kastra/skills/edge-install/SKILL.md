@@ -49,8 +49,7 @@ checked against their Kastra policies.
    ```
 
 4. Run `kastra-edge help` to check the installed commands, then wire the agent
-   hooks. If `install-claude` is unavailable, use `install-hooks` for Claude Code.
-   Only offer the optional install/removal commands below when listed in help:
+   hooks. Only offer the optional install/removal commands below when listed in help:
 
    ```bash
    kastra-edge install-claude   # Claude Code hooks
