@@ -7,7 +7,7 @@
     {
       "name": "kastra",
       "source": "./kastra",
-      "description": "Govern your AI agents with Kastra — read-only governance inspection (policies, decisions, audit chain, incidents) + governance slash commands, onboarding tools, and edge install."
+      "description": "Read Kastra governance and improve explicitly enabled agents through one OAuth connection, with governance slash commands, onboarding and Edge setup."
     }
   ]
 }
