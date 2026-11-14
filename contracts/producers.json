@@ -1,6 +1,7 @@
 {
   "shared_tools": [
     "search_decisions",
+    "get_request_stages",
     "list_incidents",
     "list_environments",
     "list_policies",

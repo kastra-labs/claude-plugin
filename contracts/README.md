@@ -6,3 +6,8 @@ the public interfaces used by this plugin; each has exactly one name.
 
 The check validates references without installing the plugin, running skill
 instructions, or accessing an account.
+
+The upcoming request-view contract adds read-only `get_request_stages`. It keeps
+linked admission and final audit records available while presenting one logical
+request. This producer inventory is not a deployment or plugin release claim;
+use only names and arguments advertised by the connected server.

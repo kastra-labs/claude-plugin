@@ -16,8 +16,17 @@ The first `kastra` tool call triggers a one-time browser authorization.
    - `from` / `to`: RFC3339 bounds. Translate "last 24h", "today", "this week"
      into a concrete `from` (and `to` if needed).
    - `limit`: keep modest (e.g. 50) unless they ask for more (max 200).
-2. Call `search_decisions`. Results are newest-first; each carries the outcome,
-   environment, matched rule, source, and latency.
+2. Call `search_decisions`. Results are newest-first. Use the returned shape:
+   legacy results are individual audit records; servers advertising `view` support
+   request summaries (`view: requests`) and raw records (`view: records`). Keep any
+   returned pagination cursor opaque.
+   - For request summaries, use the top-level outcome and start time. The nested
+     decision is one retained audit stage, not necessarily the final outcome.
+   - `INCOMPLETE` means no final outcome was recorded; never call an admission
+     ALLOW a delivered answer. Archived stages have no retained content.
+   - When advertised, use `get_request_stages` with the request's `id` as
+     `request_id` to inspect its linked evidence. Do not guess this tool exists
+     on an older server.
 3. When the user is debugging *why* something was denied, also call
    `get_rule_stats` for that environment to show how often the matched rule fires.
 
