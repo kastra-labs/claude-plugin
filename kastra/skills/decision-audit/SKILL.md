@@ -17,9 +17,9 @@ The first `kastra` tool call triggers a one-time browser authorization.
      into a concrete `from` (and `to` if needed).
    - `limit`: keep modest (e.g. 50) unless they ask for more (max 200).
 2. Call `search_decisions`. Results are newest-first. Use the returned shape:
-   legacy results are individual audit records; servers advertising `view` support
-   request summaries (`view: requests`) and raw records (`view: records`). Keep any
-   returned pagination cursor opaque.
+   omitting `view` returns individual audit records. On servers advertising `view`,
+   explicitly select `view: requests` for logical request summaries or
+   `view: records` for audit records. Keep any returned pagination cursor opaque.
    - For request summaries, use the top-level outcome and start time. The nested
      decision is one retained audit stage, not necessarily the final outcome.
    - `INCOMPLETE` means no final outcome was recorded; never call an admission
