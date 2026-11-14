@@ -3,7 +3,7 @@
 Govern your AI agents with [Kastra](https://kastra.ai). This plugin lets your
 assistant **inspect your Kastra governance state read-only** — policies,
 decisions, the tamper-evident audit chain, kill-switch incidents, and
-environments — and **improve agents you explicitly enable in Kastra**. It also
+environments. Agent Builder support is coming soon (see below). The plugin also
 provides account signup and local enforcement setup.
 
 ## Add Kastra to Claude (claude.ai)
@@ -12,9 +12,8 @@ provides account signup and local enforcement setup.
 
 Open the connectors page and add Kastra with OAuth and the hosted account URL
 `https://api.kastra.ai/mcp/account`. Sign into Kastra and
-choose a workspace. The same connection supports governance and, where enabled,
-Agent Builder. Existing governance connections need explicit renewed consent to
-add Builder; saved draft updates never require reconnection.
+choose a workspace for read-only governance. Upcoming Agent Builder support uses
+the same connection, with a separate opt-in when available.
 
 ## Claude Code plugin
 
@@ -26,7 +25,7 @@ add Builder; saved draft updates never require reconnection.
 ### What you get
 
 **Read-only governance inspection** via the Kastra OAuth connector
-(`https://api.kastra.ai/mcp/account`) — 14 read-only governance tools covering
+(`https://api.kastra.ai/mcp/account`) — 13 read-only governance tools covering
 policies, decisions, environments, the tamper-evident audit chain, kill-switch
 incidents, API keys, and activity/rule stats. The first time a governance tool
 runs, Claude Code opens your browser to authorize once (OAuth 2.1 + PKCE, scope
@@ -53,8 +52,10 @@ policies. See below.
 ### Improve agents you choose
 
 **Coming soon:** Builder is disabled by default and has not yet been qualified
-for production host use. In enabled workspaces, owners and administrators approve combined consent,
-then choose agents in **Connections → AI assistants**. Every agent starts hidden.
+for production host use. In enabled workspaces, owners and administrators check
+**Allow Agent Builder access** during consent (off by default),
+then choose agents in **Connections → AI assistants**. Leaving it unchecked keeps
+governance-only access, including on reconnect. Every agent starts hidden.
 Preview the exact shared fields and choose read, proposal and simulation access.
 Credentials stay private. Selected run evidence and detailed simulation results
 require explicit release in Kastra.
@@ -77,8 +78,8 @@ does not restore a revoked Builder delegation.
 
 ### Inspect vs. enforce
 
-Governance tools remain **read-only**; Builder can propose changes and run permitted
-simulations. To make Kastra actually *enforce* (block
+Governance tools remain **read-only**. Upcoming Builder support can propose changes
+and run permitted simulations. To make Kastra actually *enforce* (block
 or hold tool calls) on this machine, install the local edge — run
 `/kastra:edge-install`, which picks the right command for your platform, or do it
 by hand:
@@ -122,8 +123,11 @@ kastra-edge uninstall-claude --dry-run
 
 ## Version & docs
 
-**v0.3.0** — One OAuth connection for governance and permission-bound Builder, plus hosted
+**v0.2.2** — Read-only governance inspection, plus hosted
 onboarding MCP + 4 governance skills (`governance-status`, `policy-check`,
 `decision-audit`, `verify-audit`) and the `edge-install` skill.
+
+The plugin listing stays governance-only. A Builder version bump and listing
+claims wait for server enablement and host qualification.
 
 For platform guides, see [Kastra documentation](https://kastra.ai/docs).

@@ -9,7 +9,8 @@ servers=json.loads((root/'kastra/.mcp.json').read_text())['mcpServers']
 assert servers['kastra']['url']=='https://api.kastra.ai/mcp/account'
 assert servers['kastra-onboarding']['url']=='https://api.kastra.ai/mcp'
 assert len(servers)==2, 'Do not silently duplicate or rename installed namespaces'
-known=set(registry['shared_tools']+registry['onboarding_tools']+registry['builder_tools'])
+assert f"— {len(registry['shared_tools'])} read-only governance tools" in (root/'README.md').read_text()
+known=set(registry['shared_tools']+registry['onboarding_tools']+registry['builder_tools']+registry['upcoming_governance_tools'])
 for file in [root/'README.md',*sorted((root/'kastra/skills').glob('*/SKILL.md'))]:
  text=file.read_text()
  for tool in re.findall(r'`((?:get|list|search|verify|create|compare|kastra_start|kastra_signup)[a-z_]*)`',text):
