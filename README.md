@@ -8,15 +8,15 @@ provides account signup and local enforcement setup.
 
 ## Add Kastra to Claude (claude.ai)
 
-**[➕ Add Kastra to Claude](https://claude.ai/customize/connectors/id/5575d43f-b63e-4436-9804-1bb12caa9e60)**
+**[Open Claude connectors](https://claude.ai/customize/connectors)**
 
-Open the Kastra listing and connect with OAuth. Sign into Kastra and choose a
+Add a custom connection named Kastra using `https://api.kastra.ai/mcp/account`
+with OAuth. Sign into Kastra and choose a
 workspace for read-only governance. Agent Builder uses the same connection, with
 an explicit opt-in in enabled SaaS pilot workspaces.
 
-If your host requires manual setup, use `https://api.kastra.ai/mcp/account` with
-OAuth. An existing custom connector and the official listing can have different
-OAuth connections: each needs its own consent and agent permissions.
+A shared Claude directory listing has not been verified. Different OAuth
+connections need their own consent and agent permissions.
 
 ## Claude Code plugin
 
