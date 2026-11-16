@@ -79,6 +79,27 @@ publication and live actions remain in Kastra. Disable Builder access to retain
 governance reads; disconnect Kastra to revoke both. Restoring an administrator role
 does not restore a revoked Builder delegation.
 
+### Schedule proposals — coming soon
+
+The same connection will support `get_agent_schedule_context`,
+`create_agent_schedule_proposal` and `get_agent_schedule_proposal` in enabled
+SaaS pilot workspaces. Enable **Share schedules and allow schedule proposals**
+for each agent in Kastra; it is off by default. Review the schedule names,
+timing and request text, including future updates, before sharing them.
+
+Read schedule context before proposing a one-time, hourly, daily or weekly
+schedule. Use the exact published version and a named time zone; ask the user if
+the zone is unclear. Missing access or a failed read does not mean no schedule
+exists. For edits, preserve omitted or masked fields and the target revision.
+Reuse an uncertain request ID only with its original arguments.
+
+Return the Kastra review link. Saving leaves automation off; the assigned member
+must consent and an administrator must turn it on. Accepted is not proof of
+activation. Proposals expire after 24 hours; accepted schedules remain separate.
+Scheduled runs use normal execution budgets, not the simulation allowance.
+Execution accounts, credentials and run content stay private. Tool availability
+depends on the deployed server and the host refreshing its catalog.
+
 ### Inspect vs. enforce
 
 Governance tools remain **read-only**. Opt-in Builder access can propose changes
