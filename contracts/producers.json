@@ -35,7 +35,10 @@
     "create_agent_proposal",
     "get_agent_proposal",
     "compare_agent_proposal",
-    "get_agent_comparison"
+    "get_agent_comparison",
+    "get_agent_schedule_context",
+    "create_agent_schedule_proposal",
+    "get_agent_schedule_proposal"
   ],
   "upcoming_governance_tools": [
     "get_request_stages"
